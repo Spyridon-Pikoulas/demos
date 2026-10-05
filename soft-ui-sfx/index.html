@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+  <title>Soft UI SFX</title>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #120f1c; }
+    #unity-canvas { width: 100%; height: 100%; display: block; }
+    #bar { position: fixed; left: 50%; top: 50%; width: 240px; height: 6px; margin: -3px 0 0 -120px; background: #2a2640; border-radius: 3px; }
+    #fill { width: 0; height: 100%; background: #8f86ff; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <canvas id="unity-canvas" tabindex="-1"></canvas>
+  <div id="bar"><div id="fill"></div></div>
+  <script src="Build/web.loader.js"></script>
+  <script>
+    createUnityInstance(document.querySelector("#unity-canvas"), {
+      dataUrl: "Build/web.data.unityweb",
+      frameworkUrl: "Build/web.framework.js.unityweb",
+      codeUrl: "Build/web.wasm.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "heyheythere",
+      productName: "Soft UI SFX",
+      productVersion: "1.1.0",
+    }, (p) => { document.querySelector("#fill").style.width = 100 * p + "%"; })
+      .then(() => document.querySelector("#bar").remove())
+      .catch((message) => alert(message));
+  </script>
+</body>
+</html>
